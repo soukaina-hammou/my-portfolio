@@ -35,8 +35,29 @@ document.querySelectorAll('section').forEach(section => {
     observer.observe(section);
 });
 
-// Add a simple loading animation to the hero
-window.addEventListener('load', () => {
-    const heroContent = document.querySelector('.hero-content');
-    heroContent.style.animation = 'fadeInUp 1s ease-out';
+// Add hover effects for interactive elements
+document.querySelectorAll('.education, .skills, .contact-item').forEach(item => {
+    item.addEventListener('mouseenter', () => {
+        item.style.transform = 'translateY(-5px)';
+    });
+    item.addEventListener('mouseleave', () => {
+        item.style.transform = 'translateY(0)';
+    });
 });
+
+// Typing effect for the tagline (optional enhancement)
+const tagline = document.querySelector('.tagline');
+const originalText = tagline.textContent;
+tagline.textContent = '';
+let i = 0;
+
+function typeWriter() {
+    if (i < originalText.length) {
+        tagline.textContent += originalText.charAt(i);
+        i++;
+        setTimeout(typeWriter, 100);
+    }
+}
+
+// Start typing effect after hero animation
+setTimeout(typeWriter, 1000);
